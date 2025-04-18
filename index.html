@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Angel Cruz | Software Developer</title>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Inter', sans-serif;
+		}
+
+		body {
+			background: linear-gradient(135deg, #0f172a, #1e293b);
+			color: #e2e8f0;
+			line-height: 1.6;
+			scroll-behavior: smooth;
+		}
+
+		header {
+			background: rgba(30, 41, 59, 0.95);
+			padding: 3rem 2rem;
+			text-align: center;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+			backdrop-filter: blur(10px);
+		}
+
+		header h1 {
+			font-size: 3rem;
+			margin-bottom: 0.5rem;
+			color: #38bdf8;
+		}
+
+		header p {
+			color: #94a3b8;
+			font-size: 1.1rem;
+		}
+
+		section {
+			padding: 5rem 2rem;
+			max-width: 960px;
+			margin: 0 auto;
+			animation: fadeIn 1.5s ease;
+		}
+
+		@keyframes fadeIn {
+			0% { opacity: 0; transform: translateY(20px); }
+			100% { opacity: 1; transform: translateY(0); }
+		}
+
+		h2 {
+			font-size: 2.5rem;
+			margin-bottom: 1.5rem;
+			color: #f1f5f9;
+			border-left: 5px solid #38bdf8;
+			padding-left: 1rem;
+		}
+
+		.project {
+			background: #1e293b;
+			padding: 2rem;
+			margin-bottom: 2.5rem;
+			border-radius: 15px;
+			box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+			transition: transform 0.3s, box-shadow 0.3s;
+		}
+
+		.project:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+		}
+
+		.project h3 {
+			margin-bottom: 0.5rem;
+			color: #e0f2fe;
+			font-size: 1.6rem;
+		}
+
+		.project p {
+			color: #cbd5e1;
+			font-size: 1.05rem;
+		}
+
+		.dev-log {
+			margin-top: 1rem;
+			padding: 1rem;
+			background: #0f172a;
+			border: 1px dashed #475569;
+			border-radius: 10px;
+			min-height: 100px;
+			color: #f8fafc;
+		}
+
+		footer {
+			text-align: center;
+			padding: 3rem 2rem;
+			background-color: #1e293b;
+			color: #94a3b8;
+			border-top: 1px solid #334155;
+		}
+
+		a {
+			color: #38bdf8;
+			text-decoration: none;
+			transition: color 0.2s;
+		}
+
+		a:hover {
+			color: #7dd3fc;
+			text-decoration: underline;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<h1>Angel Cruz</h1>
+		<p>Aspiring Software Engineer | CS Student | Problem Solver</p>
+	</header>
+
+	<section>
+		<h2>About Me</h2>
+		<p>
+			Hey there! I'm Angel — a passionate CS student and aspiring software engineer focused on building creative and efficient solutions. Whether it’s developing games, securing systems, or solving algorithm challenges, I’m always exploring new ways to grow and contribute.
+		</p>
+	</section>
+
+	<section>
+		<h2>Projects</h2>
+		<div class="project">
+			<h3>Bunkr (C++ / OpenGL)</h3>
+			<p>A custom 3D/2D hybrid game with real-time rendering and gameplay systems.</p>
+			<div class="dev-log" contenteditable="true" data-project="bunkr" oninput="saveLog('bunkr')">
+				<p><strong>Dev Log:</strong> Write your thoughts here...</p>
+			</div>
+		</div>
+		<div class="project">
+			<h3>Latte Life (Unity / C#)</h3>
+			<p>A chill coffee sim where players drag, mix, and serve drinks using physics — complete with price calculations and a flavor tracking system.</p>
+			<div class="dev-log" contenteditable="true" data-project="latte" oninput="saveLog('latte')">
+				<p><strong>Dev Log:</strong> Write your thoughts here...</p>
+			</div>
+		</div>
+		<div class="project">
+			<h3>File Encryptor (C++ / OpenSSL)</h3>
+			<p>An encryption simulation with XOR and XTEA layers and master key fallback — perfect for learning cryptography and file system interactions.</p>
+			<div class="dev-log" contenteditable="true" data-project="encryptor" oninput="saveLog('encryptor')">
+				<p><strong>Dev Log:</strong> Write your thoughts here...</p>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<h2>Contact</h2>
+		<p>
+			Let's connect — whether it's about internships, code, or collabs!<br><br>
+			📧 <a href="mailto:angel.cruz@email.com">angel.cruz@email.com</a><br>
+			💼 <a href="https://linkedin.com/in/angelcruz" target="_blank">LinkedIn</a> | <a href="https://github.com/angelcruz" target="_blank">GitHub</a>
+		</p>
+	</section>
+
+	<footer>
+		<p>&copy; 2025 Angel Cruz. Coded with 💻 and ☕.</p>
+	</footer>
+
+	<script>
+		function saveLog(project) {
+			const content = document.querySelector(`.dev-log[data-project='${project}']`)?.innerHTML;
+			if (content) localStorage.setItem(`log_${project}`, content);
+		}
+
+		function loadLogs() {
+			document.querySelectorAll('.dev-log[contenteditable]').forEach(el => {
+				const key = `log_${el.dataset.project}`;
+				const saved = localStorage.getItem(key);
+				if (saved) el.innerHTML = saved;
+			});
+		}
+
+		window.onload = loadLogs;
+	</script>
+</body>
+
+</html>
